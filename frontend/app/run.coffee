@@ -3,6 +3,8 @@
 cjsLoader = moduleLoader: 'curl/loader/cjsm11'
 
 config =
+    paths:
+        'jquery': 'lib/jquery/jquery'
     packages: [
         { name: 'curl', location: 'lib/curl/src/curl' }
         { name: 'wire', location: 'lib/wire', main: 'wire' }
@@ -15,6 +17,7 @@ config =
         { name: 'lodash', location: 'lib/lodash/dist', main: 'lodash.compat'}
         { name: 'knockback', location: 'lib/knockback', main: 'knockback', config: cjsLoader}
     ]
+    preloads: ['app/utils/jquery-setup']
 
 success = (context) ->
     window.context = context

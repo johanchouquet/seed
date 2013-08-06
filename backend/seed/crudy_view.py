@@ -1,5 +1,6 @@
 import json
 
+from django.conf.urls import patterns, url
 from django.utils.decorators import method_decorator
 from django.http import Http404, HttpResponse
 from django.shortcuts import render
@@ -65,6 +66,16 @@ class RestfulView(object):
         view.func_name = cls.__name__
         return view
 
+
+    @classmethod
+    def make_url_patterns(cls, url_root, url_name=None):
+        view = cls.as_view()
+        return patterns('',
+            url(r'^%s/(?P<id>\w+)/(?P<method>[\w-]+)/?' % url_root, view),
+            url(r'^%s/(?P<id>\w+)/?' % url_root, view),
+            url(r'^%s/?' % url_root, view, name=url_name),
+        )
+
     def render(self, template, context=None):
         return render(self.request, template, context)
 
@@ -79,6 +90,14 @@ class RestfulView(object):
         response = HttpResponse(response, mimetype="application/json")
         return response
 
+    def json_success(self, data=None):
+        return self.json(data)
+
+    def json_failure(self, error, status_code=500):
+        response = self.json(error)
+        response.status_code = status_code
+        return response
+
     def get_params(self):
         if self.method == 'get':
             params = self.request.GET.dict()
@@ -87,18 +106,6 @@ class RestfulView(object):
         else:
             params = self.request.POST.dict()
         return params
-
-    def json_success(self, data=None):
-        return self.json({
-            "success": True,
-            "data": data
-        })
-
-    def json_failure(self, error=None):
-        return self.json({
-            "success": False,
-            "error": error
-        })
 
     @property
     def http404(self):
@@ -111,12 +118,17 @@ class CrudyView(RestfulView):
         else:
             return self.list(request)
 
-    def post(self, request, *args, **kwargs):
-        return self.create(request)
+    def post(self, request, id=None, method=None, *args, **kwargs):
+        if method:
+            print method
+            method = method.replace('-', '_')
+
+            return getattr(self, method)(request, id, *args, **kwargs)
+        else:
+            return self.create(request)
 
     def put(self, request, id, *args, **kwargs):
         return self.update(request, id)
 
     def delete(self, request, id, *args, **kwargs):
         return self.destroy(request, id)
-s
