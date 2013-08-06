@@ -1,6 +1,15 @@
 <!doctype html>
 <html>
     <head>
-        <title>Yeah mate</title>
+        <title>Seed App</title>
+        <script type="text/javascript">
+        var curl = {
+            baseUrl: '{{ STATIC_URL }}'
+        };
+        </script>
+        <script src="{{ STATIC_URL }}lib/curl/src/curl.js"></script>
+        <script src="{{ STATIC_URL }}app/run.js"></script>
     </head>
+    <body>
+    </body>
 </html>
