@@ -1,5 +1,5 @@
 # Django settings for seed project.
-import os
+import os, mongoengine
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
 BASE_PATH = os.path.abspath(os.path.join(PROJECT_PATH, '../..'))
 
@@ -14,15 +14,10 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
-        # The following settings are not used with sqlite3:
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',                      # Set to empty string for default.
+        'ENGINE': 'django.db.backends.dummy'
     }
 }
+
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
@@ -122,6 +117,7 @@ TEMPLATE_DIRS = (
 
 INSTALLED_APPS = (
     'django.contrib.auth',
+    'mongoengine.django.mongo_auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
@@ -162,3 +158,12 @@ LOGGING = {
         },
     }
 }
+
+
+# Mongo stuff
+AUTHENTICATION_BACKENDS = (
+    'mongoengine.django.auth.MongoEngineBackend',
+)
+SESSION_ENGINE = 'mongoengine.django.sessions'
+AUTH_USER_MODEL = 'mongo_auth.MongoUser'
+mongoengine.connect('seed')
