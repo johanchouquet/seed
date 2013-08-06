@@ -12,7 +12,7 @@ module.exports = (grunt) ->
                 expand: true
                 cwd: 'app'
                 src: ['**/*.coffee']
-                dest: '../backend/seed/static/app'
+                dest: '.compiled/app'
                 ext: '.js'
             specs:
                 expand: true
@@ -35,10 +35,7 @@ module.exports = (grunt) ->
         watch:
             coffee:
                 files: ["app/**/*.coffee", "spec/**/*.coffee"]
-                tasks: ["coffee"]
-            jasmine:
-                files: ["app/**/*.coffee", "spec/**/*.coffee"]
-                tasks: ["jasmine"]
+                tasks: ["coffee", "jasmine"]
 
         jasmine:
             seed:
@@ -56,17 +53,12 @@ module.exports = (grunt) ->
                             app: 'static/app'
                             lib: 'js/lib'
                         packages: [
-                            { name: 'bags', location: 'components/bags/dist' }
-                            { name: 'curl', location: 'components/curl/src/curl', main: 'curl' }
-                            { name: 'Q', location: 'components/q/', main: 'q' }
-                            { name: 'underscore', location: 'components/lodash/dist', main: 'lodash'}
-                            { name: 'lodash', location: 'components/lodash/dist', main: 'lodash'}
-                            { name: 'dojo', location: 'components/dojo'}
-                            { name: 'mout', location: 'components/mout/src'}
-                            { name: 'backbone', location: 'components/backbone', main: 'backbone', config: cjsLoader}
-                            { name: 'knockout', location: 'components/knockout/build/output', main: 'knockout-latest' }
-                            { name: 'knockback', location: 'components/knockback', main: 'knockback', config: cjsLoader}
-                            { name: 'gridster', location: 'components/gridster', main: 'gridster'}
+                            { name: 'curl', location: 'lib/curl/src/curl', main: 'curl' }
+                            { name: 'underscore', location: 'lib/lodash/dist', main: 'lodash'}
+                            { name: 'lodash', location: 'lib/lodash/dist', main: 'lodash'}
+                            { name: 'backbone', location: 'lib/backbone', main: 'backbone', config: cjsLoader}
+                            { name: 'knockout', location: 'lib/knockout/build/output', main: 'knockout-latest' }
+                            { name: 'knockback', location: 'lib/knockback', main: 'knockback', config: cjsLoader}
 
                         ]
                 helpers : ['spec/javascripts/helpers/*.js']
@@ -78,6 +70,5 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks 'grunt-contrib-jasmine'
     grunt.loadNpmTasks 'grunt-shell'
 
-    grunt.registerTask 'default', ['coffee', 'shell:compassClean', 'compass:dev']
-    grunt.registerTask 'jasmineWatch', ['jasmine', 'watch:jasmine']
+    grunt.registerTask 'default', ['coffee', 'watch']
 
