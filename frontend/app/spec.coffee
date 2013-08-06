@@ -11,6 +11,15 @@ define
             at:
                 $ref: 'dom.first!body'
 
+    viewmodel:
+        create:
+            module: 'app/viewmodels/Example'
+            args: [
+                $ref: "view"
+            ]
+
+        init: "init"
+
     plugins: [
         # { module: 'wire/debug', trace: false }
         { module: 'wire/dom' }
