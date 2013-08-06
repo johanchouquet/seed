@@ -21,17 +21,6 @@ module.exports = (grunt) ->
                 dest: '.compiled/specs'
                 ext: '.js'
 
-        compass:
-            options:
-                bundleExec: true
-                outputStyle: 'expanded'
-
-        shell:
-            compassClean:
-                command: 'compass clean'
-                options:
-                    stdout: true
-
         watch:
             coffee:
                 files: ["app/**/*.coffee", "spec/**/*.coffee"]
@@ -43,15 +32,11 @@ module.exports = (grunt) ->
                     specs: [".compiled/specs/**/*.js"]
 
             options:
-                junit:
-                    path: 'src/results'
-                    consolidate: true
                 template : require('grunt-template-jasmine-curljs')
                 templateOptions:
                     curlConfig :
                         paths:
-                            app: 'static/app'
-                            lib: 'js/lib'
+                            app: '.compiled/app'
                         packages: [
                             { name: 'curl', location: 'lib/curl/src/curl', main: 'curl' }
                             { name: 'underscore', location: 'lib/lodash/dist', main: 'lodash'}
@@ -59,12 +44,10 @@ module.exports = (grunt) ->
                             { name: 'backbone', location: 'lib/backbone', main: 'backbone', config: cjsLoader}
                             { name: 'knockout', location: 'lib/knockout/build/output', main: 'knockout-latest' }
                             { name: 'knockback', location: 'lib/knockback', main: 'knockback', config: cjsLoader}
-
                         ]
                 helpers : ['spec/javascripts/helpers/*.js']
                 vendor: []
 
-    grunt.loadNpmTasks 'grunt-contrib-compass'
     grunt.loadNpmTasks 'grunt-contrib-coffee'
     grunt.loadNpmTasks 'grunt-contrib-watch'
     grunt.loadNpmTasks 'grunt-contrib-jasmine'
