@@ -1,0 +1,7 @@
+*.pyc
+.*
+!.gitmodules
+*.pyo
+/node_modules
+/bower_components
+_SpecRunner.html
