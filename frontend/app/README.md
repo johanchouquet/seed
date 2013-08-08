@@ -179,6 +179,13 @@ And when you click the `Add Something`, the items array gets extended and now th
     <button>Add Something</button>
 </div>
 ```
+
+To create the binding between view model and dom you run this
+
+```coffeescript
+ko.applyBindings new ViewModel(), jQuery('.dom-element')
+```
+
 Knockout tutorials are the best way to learn:
 
 [Knockout example](http://learn.knockoutjs.com/)
