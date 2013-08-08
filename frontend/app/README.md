@@ -19,7 +19,7 @@ define
     hello: 'internet'
 ```
 
-If you look at context object:
+If you look at the `context` object:
 
 ```javascript
 > console.log(context)
@@ -43,7 +43,7 @@ define
             ]
 ```
 
-The context now looks like this:
+`context` now looks like this:
 
 ```javascript
 > console.log(context)
@@ -107,20 +107,23 @@ So in this example `myObject` is created as before, but in the initialize stage 
 
 `gehansObject` is created, and during configure is has `gehansObject.helloProp` set to the `hello` component. The connect stage means that when `gehansObject.thisMethod` is called, then `myObject.thatMethod` is called with the same arguments. During ready then `runMe` is called with the argument `'hello'`.
 
+Note that some behaviours require you to load plugins. For connections you have to add this to the spec
+
+```coffeescript
+    plugins: [
+        { module: 'wire/connect'}
+    ]
+```
+
 [More connection options](https://github.com/cujojs/wire/blob/master/docs/connections.md)
-
-backbone.js
------------
-
-Backbone is good for providing data models and a way to retrieve/persist them from the server. A server is not necessary as we can point to a JSON file for retrieving a data set initially, and then just retain the collection in memory.
 
 
 knockout.js
 -----------
 
-Knockout is used to create a 2-way binding between a javascript object (view model) and an html template (view). This is similar to django views, where you would pass a context into a template. However whereas in Django you render the template once and send to the browser, with knockout you are creating a live 2-way binding with the dom. The view is created in dom, and then 2-way binding is created to the knockout view model.
+Knockout is used to create a 2-way binding between a javascript object (view model) and an html template (view). This is similar to django views, where you would pass a context into a template. However whereas in Django you render the template once and send to the browser, with knockout you are creating a live 2-way binding with the dom. The view is created actually *in* dom, and then the binding to the view model is created.
 
-This in incredible powerful as it means whenever the view model is changed, so is the dom. For instance if you have an array of items int he view model and a for loop to display them in the DOM, then if you programatically add something to that array then it will just appear the dom. Likewise if the dom changes, then so does the view model. If you enter some text into an input, then the view model can be updated with that value.
+This in incredibly powerful as it means whenever the view model is changed, so is the dom. For instance if you have an array of items in the view model and a for loop to display them in the view, then if you programatically add something to that array then it will just appear the dom. Likewise if the dom changes, then so does the view model. If you enter some text into an input, then the view model can be updated with that value.
 
 A very small example. Given this view model
 
@@ -138,7 +141,7 @@ class ViewModel
             'text': 'super awesome'
 ```
 
-and this templte
+and this template
 
 ```html
 <div>
@@ -176,6 +179,11 @@ And when you click the `Add Something`, the items array gets extended and now th
     <button>Add Something</button>
 </div>
 ```
-Knockout tutorials are the best way to learn though:
+Knockout tutorials are the best way to learn:
 
 [Knockout example](http://learn.knockoutjs.com/)
+
+backbone.js
+-----------
+
+Backbone is good for providing data models and a way to retrieve/persist them from the server. A server is not necessary as we can point to a JSON file for retrieving a data set initially, and then just retain the collection in memory.
