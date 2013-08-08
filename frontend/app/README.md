@@ -117,6 +117,11 @@ Note that some behaviours require you to load plugins. For connections you have 
 
 [More connection options](https://github.com/cujojs/wire/blob/master/docs/connections.md)
 
+### Injecting into the DOM
+
+You can see this in [spec.coffee](spec.coffee), it's quite simple.
+
+[More dom methods](https://github.com/cujojs/wire/blob/master/docs/dom.md)
 
 knockout.js
 -----------
