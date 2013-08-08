@@ -69,4 +69,4 @@ All modules are actually written in coffeescript, although the AMD wrapper is wr
 More
 ----
 
-More is explained in [app](app)r
+More is explained in [app](app)
