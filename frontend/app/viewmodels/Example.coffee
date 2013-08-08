@@ -4,9 +4,9 @@
 
 class ExampleVM
     constructor: (@element) ->
+        @properties()
 
     init: ->
-        @properties()
         ko.applyBindings this, @element
 
     properties: ->

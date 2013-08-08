@@ -7,15 +7,15 @@ config =
         'jquery': 'lib/jquery/jquery'
     packages: [
         { name: 'curl', location: 'lib/curl/src/curl' }
+        { name: 'underscore', location: 'lib/lodash/dist', main: 'lodash.compat'}
+        { name: 'lodash', location: 'lib/lodash/dist', main: 'lodash.compat'}
+        { name: 'backbone', location: 'lib/backbone', main: 'backbone', config: cjsLoader }
+        { name: 'knockout', location: 'lib/knockout/build/output', main: 'knockout-latest' }
+        { name: 'knockback', location: 'lib/knockback', main: 'knockback', config: cjsLoader}
         { name: 'wire', location: 'lib/wire', main: 'wire' }
         { name: 'meld', location: 'lib/meld', main: 'meld' }
         { name: 'when', location: 'lib/when', main: 'when' }
         { name: 'poly', location: 'lib/poly' }
-        { name: 'knockout', location: 'lib/knockout/build/output', main: 'knockout-latest' }
-        { name: 'backbone', location: 'lib/backbone', main: 'backbone', config: cjsLoader }
-        { name: 'underscore', location: 'lib/lodash/dist', main: 'lodash.compat'}
-        { name: 'lodash', location: 'lib/lodash/dist', main: 'lodash.compat'}
-        { name: 'knockback', location: 'lib/knockback', main: 'knockback', config: cjsLoader}
     ]
     preloads: ['app/utils/jquery-setup']
 

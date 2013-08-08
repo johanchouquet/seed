@@ -24,7 +24,11 @@ module.exports = (grunt) ->
         watch:
             coffee:
                 files: ["app/**/*.coffee", "spec/**/*.coffee"]
-                tasks: ["coffee", "jasmine"]
+                tasks: ["coffee"]
+
+            jasmine:
+                files: [".compiled/**/*"]
+                tasks: ["jasmine"]
 
         jasmine:
             seed:
@@ -37,6 +41,7 @@ module.exports = (grunt) ->
                     curlConfig :
                         paths:
                             app: '.compiled/app'
+                            jquery: 'lib/jquery/jquery'
                         packages: [
                             { name: 'curl', location: 'lib/curl/src/curl', main: 'curl' }
                             { name: 'underscore', location: 'lib/lodash/dist', main: 'lodash'}
@@ -54,4 +59,3 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks 'grunt-shell'
 
     grunt.registerTask 'default', ['coffee', 'watch']
-
