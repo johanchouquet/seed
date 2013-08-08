@@ -26,7 +26,7 @@ If you look at context object:
 {hello: "internet"}
 ```
 
-### Creating objects
+### Creating components
 
 That is quite useless but now you can tell it to create javascript objects and inject dependencies:
 
@@ -60,6 +60,8 @@ curl ['app/MyObject'], (MyObject) ->
     context.hello = 'internet'
     context.myObject = new MyObject('someConfig', context.hello)
 ```
+
+[More on components](https://github.com/cujojs/wire/blob/master/docs/components.md)
 
 ### Properties, methods and defining connections
 
@@ -103,4 +105,7 @@ define
 
 So in this example `myObject` is created as before, but in the initialize stage then `initMethod` is called with no arguments.
 
-`gehansObject` is created, and duriing configure is has `gehansObject.helloProp` set to the `hello` component. The connect stage means that when `gehansObject.thisMethod` is called, then `myObject.thatMethod` is called with the same arguments. During ready then `runMe` is called with the argument `'hello'`.
+`gehansObject` is created, and during configure is has `gehansObject.helloProp` set to the `hello` component. The connect stage means that when `gehansObject.thisMethod` is called, then `myObject.thatMethod` is called with the same arguments. During ready then `runMe` is called with the argument `'hello'`.
+
+[More connection options](https://github.com/cujojs/wire/blob/master/docs/connections.md)
+
