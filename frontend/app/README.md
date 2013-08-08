@@ -66,6 +66,7 @@ These are done at various points through each object's lifecycle, which you hook
 
 In actual code
 
+```coffeecript
     define
         hello: 'internet'
         myObject:
@@ -89,7 +90,7 @@ In actual code
                 thisMethod: 'myObject.thatMethod'
             ready:
                 runMe: ['hello']
-
+```
 
 So in this example `myObject` is created as before, but in the initialize stage then `initMethod` is called with no arguments.
 
