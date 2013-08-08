@@ -1,9 +1,9 @@
 Frontend Structure
 ==================
 
-The Django backend serves a single file to the browser `index.html`, which acts as a single entry point for the app by loading `app/run.coffee`
+The Django backend serves a single file to the browser (index.html)[index.html], which acts as a single entry point for the app by loading (app/run.coffee)[app/run.coffee]
 
-The `run.coffee` file sets up the environment for `curl` and run the wire.js spec `app/spec`
+(app/run.coffee)[app/run.coffee] file sets up the environment for `curl` and run the wire.js spec (app/spec.coffee)[app/spec.coffee]
 
 run.coffee and curl
 -------------------
@@ -69,4 +69,4 @@ All modules are actually written in coffeescript, although the AMD wrapper is wr
 More
 ----
 
-More is explained in [app](app).
+More is explained in [app](app)r
