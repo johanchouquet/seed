@@ -10,9 +10,11 @@ run.coffee and curl
 
 Curl is an AMD loader similar to require.js. The various packages installed via bower are made available here easily via named packages. So for instance to user knockout you can now do this in a module:
 
-    define(['knockout'], function (ko) {
-        // Do something
-    });
+```javascript
+define(['knockout'], function (ko) {
+    // Do something
+});
+```
 
 The purpose of this file is to set up that environment and run the base spec of our application. It saves the resulting context to `window.context` for debugging and also logs any errors when wiring that spec.
 
@@ -36,15 +38,16 @@ These are stored in `spec` and by running `grunt` they are run every time an `ap
 
 Jasmine uses BDD concepts. An example file is included in `spec`, but briefly the modules look like the below. You can include `app` modules the same way that you would include them there.
 
-    define(['app/SomeModule'], function(SomeModule){
-        describe('some test', function() {
-            it('has some behaviour', function() {
-                instance = new SomeModule();
-                expect(instance.someProperty).toBe('someValue');
-            });
+```javascript
+define(['app/SomeModule'], function(SomeModule){
+    describe('some test', function() {
+        it('has some behaviour', function() {
+            instance = new SomeModule();
+            expect(instance.someProperty).toBe('someValue');
         });
     });
-
+});
+```
 
 AMD modules and coffeescript
 ----------------------------
@@ -52,19 +55,20 @@ AMD modules and coffeescript
 All modules are actually written in coffeescript, although the AMD wrapper is written in javascript so that you don't have to indent the whole file. The backticks in the below code tell the coffeescript compiler to interpret the enclosed string as javascript.
 
 
-    `define([
-        'SomeModule',
-        'AnotherModule'
-    ], function(SomeModule, AnotherModule) {`
+```coffeescript
+`define([
+    'SomeModule',
+    'AnotherModule'
+], function(SomeModule, AnotherModule) {`
 
-    class SomeClass
-        constructor: ->
-            # Do some stuff
+class SomeClass
+    constructor: ->
+        # Do some stuff
 
-    return SomeClass
+return SomeClass
 
-    `})`
-
+`})`
+```
 
 More
 ----
