@@ -18,3 +18,7 @@ The purpose of this file is to set up that environment and run the base spec of 
 
 spec.coffee and wire.js
 -----------------------
+
+wire.js is used to provide the underlying architecture for the app. You can read their own [references documents](https://github.com/cujojs/wire/blob/master/docs/README.md)
+
+wire.js works by allowing you to specify objects to create and configure within a context, and define how those objects interact with each other.
