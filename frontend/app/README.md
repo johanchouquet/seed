@@ -66,30 +66,30 @@ These are done at various points through each object's lifecycle, which you hook
 
 In actual code
 
-```coffeecript
-    define
-        hello: 'internet'
-        myObject:
-            create:
-                module: ['app/MyObject'}
-                args: [
-                    'someConfig'
-                ,
-                    $ref: 'string'
-                ]
-            init:
-                initMethod: null
+```coffeescript
+define
+    hello: 'internet'
+    myObject:
+        create:
+            module: ['app/MyObject'}
+            args: [
+                'someConfig'
+            ,
+                $ref: 'string'
+            ]
+        init:
+            initMethod: null
 
 
-        gehansObject:
-            create:
-                module: ['app/GehansObject'}
-            properties:
-                helloProp: $ref: 'hello'
-            connect:
-                thisMethod: 'myObject.thatMethod'
-            ready:
-                runMe: ['hello']
+    gehansObject:
+        create:
+            module: ['app/GehansObject'}
+        properties:
+            helloProp: $ref: 'hello'
+        connect:
+            thisMethod: 'myObject.thatMethod'
+        ready:
+            runMe: ['hello']
 ```
 
 So in this example `myObject` is created as before, but in the initialize stage then `initMethod` is called with no arguments.
