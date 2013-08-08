@@ -22,8 +22,8 @@ define
 If you look at context object:
 
 ```javascript
-    > console.log(context)
-    {hello: "internet"}
+> console.log(context)
+{hello: "internet"}
 ```
 
 ### Creating objects
@@ -47,7 +47,7 @@ The context now looks like this:
 
 ```javascript
 > console.log(context)
-{hello: "internet', myObject: <MyObject instance>}
+{hello: "internet", myObject: <MyObject instance>}
 ```
 
 You can also pass in arguments to the constructor in the `args` part.
