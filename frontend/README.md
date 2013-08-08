@@ -29,9 +29,10 @@ In brief wire.js works by allowing you to specify objects to create and configur
 
 The last part is powerful as the objects do not need to know about each other. Instead an output method is called, and wire connects that to an input method of another component.
 
-More is explained in `app`
+More is explained in [app](app).
 
 Jasmine tests
 -------------
 
+These are stored in `spec` and by running `grunt` they are run every time an `app` file or `spec` file changes. You can create and test javascript modules completely independently of the browser this way, leaving
 
