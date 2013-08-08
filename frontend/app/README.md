@@ -51,6 +51,46 @@ You will also notice the strange looking `$ref` part. This is the syntax used to
         context.hello = 'internet'
         context.myObject = new MyObject('someConfig', context.hello)
 
+### Properties, methods and defining connections
 
-### Running methods and defining connections
+Getting more complex you can inject properties, run methods at various stages and connect components together.
 
+These are done at various points through each object's lifecycle, which you hook into.
+
+* Create - runs object constructir
+* Configure - applies `properties` facet
+* Initialize - runs any `init` methods
+* Connect - creates any component connections
+* Ready - runs any `ready` methods
+* Destroy - runs any `destroy` methods
+
+In actual code
+
+    define
+        hello: 'internet'
+        myObject:
+            create:
+                module: ['app/MyObject'}
+                args: [
+                    'someConfig'
+                ,
+                    $ref: 'string'
+                ]
+            init:
+                initMethod: null
+
+
+        gehansObject:
+            create:
+                module: ['app/GehansObject'}
+            properties:
+                helloProp: $ref: 'hello'
+            connect:
+                thisMethod: 'myObject.thatMethod'
+            ready:
+                runMe: ['hello']
+
+
+So in this example `myObject` is created as before, but in the initialize stage then `initMethod` is called with no arguments.
+
+`gehansObject` is created, and duriing configure is has `gehansObject.helloProp` set to the `hello` component. The connect stage means that when `gehansObject.thisMethod` is called, then `myObject.thatMethod` is called with the same arguments. During ready then `runMe` is called with the argument `'hello'`.
