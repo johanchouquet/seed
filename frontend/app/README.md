@@ -109,3 +109,73 @@ So in this example `myObject` is created as before, but in the initialize stage 
 
 [More connection options](https://github.com/cujojs/wire/blob/master/docs/connections.md)
 
+backbone.js
+-----------
+
+Backbone is good for providing data models and a way to retrieve/persist them from the server. A server is not necessary as we can point to a JSON file for retrieving a data set initially, and then just retain the collection in memory.
+
+
+knockout.js
+-----------
+
+Knockout is used to create a 2-way binding between a javascript object (view model) and an html template (view). This is similar to django views, where you would pass a context into a template. However whereas in Django you render the template once and send to the browser, with knockout you are creating a live 2-way binding with the dom. The view is created in dom, and then 2-way binding is created to the knockout view model.
+
+This in incredible powerful as it means whenever the view model is changed, so is the dom. For instance if you have an array of items int he view model and a for loop to display them in the DOM, then if you programatically add something to that array then it will just appear the dom. Likewise if the dom changes, then so does the view model. If you enter some text into an input, then the view model can be updated with that value.
+
+A very small example. Given this view model
+
+```coffeescript
+class ViewModel
+    constructor: ->
+        @title = ko.observable 'Hello'
+        @items = ko.observableArray [
+            'text': 'Hello'
+        ,
+            'text': 'Yes mate'
+        ]
+    addSomething: =>
+        @items.push
+            'text': 'super awesome'
+```
+
+and this templte
+
+```html
+<div>
+    <h1 data-bind="text: title"></h1>
+    <ul data-bind="foreach: items">
+        <li data-bind="text: text"></li>
+    </ul>
+    <button data-bind="click: addSomething">Add Something</button>
+</div>
+```
+
+You will get this in the dom
+
+```html
+<div>
+    <h1>Hello</h1>
+    <ul>
+        <li>Hello</li>
+        <li>Yes mate</li>
+    </ul>
+    <button>Add Something</button>
+</div>
+```
+
+And when you click the `Add Something`, the items array gets extended and now the dom looks like this
+
+```html
+<div>
+    <h1>Hello</h1>
+    <ul>
+        <li>Hello</li>
+        <li>Yes mate</li>
+        <li>super awesome</li>
+    </ul>
+    <button>Add Something</button>
+</div>
+```
+Knockout tutorials are the best way to learn though:
+
+[Knockout example](http://learn.knockoutjs.com/)
