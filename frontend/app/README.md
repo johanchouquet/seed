@@ -10,18 +10,19 @@ The best way to undestand wire is to play around with a spec yourself, and see t
 
 Spec files are a specification fed into wire, so that all you need to do it define what needs to be created and how they interact. Wire then takes care of resolving the depencies, creating the actual modules, injecting dependencies and creating connections.
 
-At it's most basic level you can just create a bunch of strings, e.g.
+### Defining spec
 
+At it's most basic level you can just create a bunch of strings, e.g.
 
     define
         hello: 'internet'
 
-
 If you look at context object:
 
     > console.log(context)
-    {hello: "internet'}
+    {hello: "internet"}
 
+### Creating objects
 
 That is quite useless but now you can tell it to create javascript objects and inject dependencies:
 
@@ -50,4 +51,6 @@ You will also notice the strange looking `$ref` part. This is the syntax used to
         context.hello = 'internet'
         context.myObject = new MyObject('someConfig', context.hello)
 
+
+### Running methods and defining connections
 
