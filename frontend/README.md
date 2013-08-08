@@ -29,8 +29,6 @@ In brief wire.js works by allowing you to specify objects to create and configur
 
 The last part is powerful as the objects do not need to know about each other. Instead an output method is called, and wire connects that to an input method of another component.
 
-More is explained in [app](app).
-
 Jasmine tests
 -------------
 
@@ -51,7 +49,7 @@ Jasmine uses BDD concepts. An example file is included in `spec`, but briefly th
 AMD modules and coffeescript
 ----------------------------
 
-All modules are actually written in coffeescript, although the AMD wrapper is written in javascript so that you don't have to indent the whole file. The backticks in the below code tell the coffeescript compiler to interpret the enclosing string as javascript.
+All modules are actually written in coffeescript, although the AMD wrapper is written in javascript so that you don't have to indent the whole file. The backticks in the below code tell the coffeescript compiler to interpret the enclosed string as javascript.
 
 
     `define([
@@ -66,3 +64,9 @@ All modules are actually written in coffeescript, although the AMD wrapper is wr
     return SomeClass
 
     `})`
+
+
+More
+----
+
+More is explained in [app](app).
