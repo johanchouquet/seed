@@ -31,7 +31,7 @@ Grunt is used to compile coffeescript and run the unit tests in jasmine.
 Npm is used to install grunt and packages used by grunt.
 Bower is used to install JS packages for use in the browser.
 
-To set the initial environment:
+To setup the initial environment:
 
     npm install
 
@@ -41,4 +41,4 @@ After all packages are installed, to compile all coffeescript and run unit tests
 
     grunt
 
-
+To understand how the frontend works, look at the `README.md` in `frontend`
