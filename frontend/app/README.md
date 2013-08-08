@@ -14,42 +14,52 @@ Spec files are a specification fed into wire, so that all you need to do it defi
 
 At it's most basic level you can just create a bunch of strings, e.g.
 
-    define
-        hello: 'internet'
+```coffeescript
+define
+    hello: 'internet'
+```
 
 If you look at context object:
 
+```javascript
     > console.log(context)
     {hello: "internet"}
+```
 
 ### Creating objects
 
 That is quite useless but now you can tell it to create javascript objects and inject dependencies:
 
-    define
-        hello: 'internet'
-        myObject:
-            create:
-                module: ['app/MyObject'}
-                args: [
-                    'someConfig'
-                ,
-                    $ref: 'string'
-                ]
+```coffeescript
+define
+    hello: 'internet'
+    myObject:
+        create:
+            module: ['app/MyObject'}
+            args: [
+                'someConfig'
+            ,
+                $ref: 'string'
+            ]
+```
 
 The context now looks like this:
 
-    > console.log(context)
-    {hello: "internet', myObject: <MyObject instance>}
+```javascript
+> console.log(context)
+{hello: "internet', myObject: <MyObject instance>}
+```
 
 You can also pass in arguments to the constructor in the `args` part.
 
 You will also notice the strange looking `$ref` part. This is the syntax used to reference other components. In this case it will pass our string `hello` into the constructor. It is effectively doing this:
 
-    context = {}
-    curl ['app/MyObject'], (MyObject) ->
-        context.hello = 'internet'
-        context.myObject = new MyObject('someConfig', context.hello)
+```coffeescript
+context = {}
+curl ['app/MyObject'], (MyObject) ->
+    context.hello = 'internet'
+    context.myObject = new MyObject('someConfig', context.hello)
+```
 
 ### Properties, methods and defining connections
 
@@ -79,7 +89,6 @@ define
             ]
         init:
             initMethod: null
-
 
     gehansObject:
         create:
