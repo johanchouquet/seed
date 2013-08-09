@@ -2,8 +2,15 @@
 
 class Api
 
-    won: ->
-        console.log 'yo'
+    # Output
+    _turnFinished: (result, boardApi) ->
+
+    # Start turn for player
+    startTurn: ->
+
+    # Turn finished
+    turnFinished: (result) ->
+        @_turnFinished result, this
 
 return Api
 

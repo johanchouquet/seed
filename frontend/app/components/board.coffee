@@ -1,11 +1,14 @@
 define
+    # Injected
     root: null
-
-    $exports: $ref: 'api'
+    gameManager: null
 
     api:
         create:
             module: 'app/components/Api'
+        connect:
+            startTurn: 'boardViewmodel.startTurn'
+            _turnFinished: 'gameManager.turnFinished'
 
     boardView:
         render:
@@ -24,10 +27,13 @@ define
                 $ref: "boardView"
             ]
 
-        init: "init"
+        ready: "init"
+        after:
+            turnFinished: 'api.turnFinished'
 
     plugins: [
         # { module: 'wire/debug', trace: false }
+        { module: 'wire/aop' }
         { module: 'wire/dom' }
         { module: 'wire/dom/render' }
         { module: 'wire/connect'}

@@ -23,11 +23,16 @@ define
                 $ref: 'dom.first!.board-TL'
                 at: 'layout'
 
+    gameManager:
+        create:
+            module: 'app/Game'
+
     boardFactory:
         create:
             module: 'app/BoardFactory'
 
         properties:
+            _layout: $ref: 'layout'
             _boardLocation: null
             _makeBoard:
                 wire:
@@ -35,8 +40,15 @@ define
                     spec: 'app/components/board'
                     provide:
                         root: $ref: 'boardFactory._boardLocation'
-                connect:
-                    'won': 'boardFactory.wonBoard'
+                        gameManager: $ref: 'gameManager'
+
+
+        connect:
+            '_boardCreated': 'gameManager.registerBoard'
+            '_boardsCreated': 'gameManager.start'
+
+        ready: 'setupBoards'
+
 
     plugins: [
         # { module: 'wire/debug', trace: false }

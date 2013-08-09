@@ -1,11 +1,10 @@
 <div class="board">
-    <div class="TL">X</div>
-    <div class="TM">O</div>
-    <div class="TR"></div>
-    <div class="ML"></div>
-    <div class="MM"></div>
-    <div class="MR"></div>
-    <div class="BL"></div>
-    <div class="BM"></div>
-    <div class="BR"></div>
+    <!-- ko if: winner -->
+    <span data-bind="text: winner"></span>
+    <!-- /ko -->
+    <!-- ko ifnot: winner -->
+        <!-- ko foreach: cells -->
+        <div data-bind="click: $parent.clicked, css: name, text: value"></div>
+        <!-- /ko -->
+    <!-- /ko -->
 </div>
