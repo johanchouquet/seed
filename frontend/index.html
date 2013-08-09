@@ -9,7 +9,34 @@
         </script>
         <script src="{{ STATIC_URL }}lib/curl/src/curl.js"></script>
         <script src="{{ STATIC_URL }}app/run.js"></script>
+        <link rel="stylesheet" type="text/css" href="/static/app/views/layout.css">
+        <link rel="stylesheet" type="text/css" href="/static/app/views/board.css">
     </head>
     <body>
+
+        <div class="boards">
+            <div class="board-TL">
+                <div class="board">
+                    <div class="TL" data-bind="text: TL"></div>
+                    <div class="TM" data-bind="text: TM"></div>
+                    <div class="TR" data-bind="text: TR"></div>
+                    <div class="ML"></div>
+                    <div class="MM"></div>
+                    <div class="MR"></div>
+                    <div class="BL"></div>
+                    <div class="BM"></div>
+                    <div class="BR" data-bind="click: clickBR"></div>
+                </div>
+            </div>
+            <div class="board-TM"></div>
+            <div class="board-TR"></div>
+            <div class="board-ML"></div>
+            <div class="board-MM"></div>
+            <div class="board-MR"></div>
+            <div class="board-BL"></div>
+            <div class="board-BM"></div>
+            <div class="board-BL"></div>
+        </div>
+
     </body>
 </html>
