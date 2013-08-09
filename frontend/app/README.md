@@ -125,7 +125,7 @@ You can see this in [spec.coffee](spec.coffee), it's quite simple.
 
 ### Reusable components
 
-Wire provides a factory like `create` for reusing specs. It works like any other so you can use init, ready, connect etc. If you need to inject properties into it then you can use `provide` like in the below.
+Wire provides a factory like `create` for reusing specs. It works like any other so you can use init, ready, connect etc. If you need to inject properties into it then you can use `provide` like below.
 
 ```coffeescript
 define
@@ -144,7 +144,7 @@ define
         ready: 'start'
 ```
 
-By default the component will expose its context in full, so if there is a `model` object in the context it will be visible as `myReusableComponent.model`. If you want to expose only certain properties, i.e. api, then you can tell the spec to expose a single object using `$exports`
+By default the component will expose its context in full, so if there is a `model` object in the context it will be visible as `myReusableComponent.model`. If you want to expose only certain properties, i.e. an api, then you can tell the spec to expose a single object using `$exports`.
 
 ```coffeescript
 define:
