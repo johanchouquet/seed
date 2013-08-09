@@ -23,24 +23,20 @@ define
                 $ref: 'dom.first!.board-TL'
                 at: 'layout'
 
-    exampleView:
-        render:
-            template:
-                module: 'text!app/views/example.html'
-            css:
-                module: 'css!app/views/example.css'
-        insert:
-            after:
-                $ref: 'layout'
-
-    viewmodel:
+    boardFactory:
         create:
-            module: 'app/viewmodels/Example'
-            args: [
-                $ref: "exampleView"
-            ]
+            module: 'app/BoardFactory'
 
-        init: "init"
+        properties:
+            _boardLocation: null
+            _makeBoard:
+                wire:
+                    defer: true
+                    spec: 'app/components/board'
+                    provide:
+                        root: $ref: 'boardFactory._boardLocation'
+                connect:
+                    'won': 'boardFactory.wonBoard'
 
     plugins: [
         # { module: 'wire/debug', trace: false }
