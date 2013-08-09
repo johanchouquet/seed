@@ -123,6 +123,49 @@ You can see this in [spec.coffee](spec.coffee), it's quite simple.
 
 [More dom methods](https://github.com/cujojs/wire/blob/master/docs/dom.md)
 
+### Reusable components
+
+Wire provides a factory like `create` for reusing specs. It works like any other so you can use init, ready, connect etc. If you need to inject properties into it then you can use `provide` like in the below.
+
+```coffeescript
+define
+    viewNode:
+        render:
+            template:
+                module: 'text!app/layout.html'
+
+    myReusableComponent:
+        wire:
+            spec: 'app/components/ReusableThing/spec'
+            provide:
+                someDomNode:
+                    $ref: 'dom.first!.container'
+                    at: 'viewNode'
+        ready: 'start'
+```
+
+By default the component will expose its context in full, so if there is a `model` object in the context it will be visible as `myReusableComponent.model`. If you want to expose only certain properties, i.e. api, then you can tell the spec to expose a single object using `$exports`
+
+```coffeescript
+define:
+    # Injected
+    someDomNode: null
+
+    $exports: $ref: 'api'
+
+    api:
+        create:
+            module: 'app/components/ReusableThing/api'
+
+    model:
+        create:
+            module: 'app/components/ReusableThing/model'
+
+    somethingElse:
+        create:
+            module: 'app/components/ReusableThing/SomethingElse'
+```
+
 knockout.js
 -----------
 
