@@ -2,9 +2,23 @@
     overflow: auto;
     width: 155px;
     height: 155px;
-    line-height: 220px;
+    line-height: 215px;
     text-align: center;
     font-size: 138pt;
+}
+.board.highlight {
+    color: red;
+}
+.board.active {
+    background: #eee;
+}
+.board.active.active-O div:hover:after {
+    content: "O";
+    color: #999;
+}
+.board.active.active-X div:hover:after {
+    content: "X";
+    color: #999;
 }
 .board div {
     float: left;
@@ -14,7 +28,7 @@
     text-align: center;
     font-size: 24pt;
 }
-.board div:hover {
+.board.active div:hover {
     cursor: pointer;
     background: #eee;
 }

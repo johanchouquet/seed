@@ -43,9 +43,6 @@ class BoardFactory
         @_boardLocation = element
         @_makeBoard()
 
-    wonBoard: ->
-        console.log 'yeeah mate'
-
 return BoardFactory
 
 `})`

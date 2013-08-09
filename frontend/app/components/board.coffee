@@ -9,6 +9,7 @@ define
         connect:
             startTurn: 'boardViewmodel.startTurn'
             _turnFinished: 'gameManager.turnFinished'
+            highlight: 'boardViewmodel.highlight'
 
     boardView:
         render:

@@ -12,6 +12,10 @@ class Api
     turnFinished: (result) ->
         @_turnFinished result, this
 
+    highlight: ->
+        console.log 'highlight'
+
+
 return Api
 
 `})`

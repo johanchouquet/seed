@@ -12,17 +12,6 @@ define
             at:
                 $ref: 'dom.first!body'
 
-    boardView:
-        render:
-            template:
-                module: 'text!app/views/board.html'
-            css:
-                module: 'css!app/views/board.css'
-        insert:
-            at:
-                $ref: 'dom.first!.board-TL'
-                at: 'layout'
-
     gameManager:
         create:
             module: 'app/Game'
@@ -41,7 +30,6 @@ define
                     provide:
                         root: $ref: 'boardFactory._boardLocation'
                         gameManager: $ref: 'gameManager'
-
 
         connect:
             '_boardCreated': 'gameManager.registerBoard'

@@ -6,7 +6,13 @@
 class CheckWinner
 
     checkWinner: (currentMap) ->
-        console.log currentMap
+        [result, winner] = @_checkWinner currentMap
+        result
+
+    getWinner: (currentMap) ->
+        @_checkWinner currentMap
+
+    _checkWinner: (currentMap) ->
         winners  = [
             ['TL', 'TM', 'TR']
             ['ML', 'MM', 'MR']
@@ -26,7 +32,9 @@ class CheckWinner
                 result = currentMap[cellName]
                 first ?= result
                 result and result is first
-            return first if thisWins
+            return [first, win] if thisWins
+        return [null, null]
+
 
 return CheckWinner
 

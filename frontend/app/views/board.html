@@ -1,4 +1,4 @@
-<div class="board">
+<div class="board" data-bind="css: {highlight: highlighted, active: boardEnabled, 'active-O': currentPlayer() == 'O', 'active-X': currentPlayer() == 'X' }">
     <!-- ko if: winner -->
     <span data-bind="text: winner"></span>
     <!-- /ko -->

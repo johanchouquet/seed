@@ -21,6 +21,7 @@ class Board
         @properties()
 
     properties: ->
+        @highlighted = ko.observable false
         @boardEnabled = ko.observable false
         @currentPlayer = ko.observable 'O'
         @cells = ko.observableArray()
@@ -29,10 +30,12 @@ class Board
             cell = new Cell cellName
             @cells.push cell
 
+    # INPUT
     startTurn: (player) ->
         @boardEnabled true
         @currentPlayer player
 
+    # OUTPUT
     turnFinished: (cell) ->
         @boardEnabled false
         [cell, @checkWinner()]
@@ -42,8 +45,12 @@ class Board
         for cell in @cells()
             current[cell.name] = cell.value()
         winner = @winCheck.checkWinner current
-        console.log winner
         @winner winner
+        winner
+
+    highlight: ->
+        console.log "I WINZ"
+        @highlighted true
 
     clicked: (model, event) =>
         return unless @boardEnabled()
