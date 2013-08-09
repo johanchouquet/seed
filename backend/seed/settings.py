@@ -1,5 +1,6 @@
 # Django settings for seed project.
-import os, mongoengine
+import os
+#, mongoengine
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
 BASE_PATH = os.path.abspath(os.path.join(PROJECT_PATH, '../..'))
 
@@ -166,4 +167,4 @@ AUTHENTICATION_BACKENDS = (
 )
 SESSION_ENGINE = 'mongoengine.django.sessions'
 AUTH_USER_MODEL = 'mongo_auth.MongoUser'
-mongoengine.connect('seed')
+#mongoengine.connect('seed')
