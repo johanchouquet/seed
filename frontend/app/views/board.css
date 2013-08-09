@@ -2,6 +2,9 @@
     overflow: auto;
     width: 155px;
     height: 155px;
+    line-height: 220px;
+    text-align: center;
+    font-size: 138pt;
 }
 .board div {
     float: left;
