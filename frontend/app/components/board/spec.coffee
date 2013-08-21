@@ -4,6 +4,12 @@ define
     # Injected - for notifying of turns finishing etc
     gameManager: null
 
+    # Doesn't work for some reason when using child
+    # contexts, should mean only the api object is exposed
+    $exports: $ref: 'api'
+
+    # Sent all external calls through this Api object
+    # as ideally only this is exposed.
     api:
         create:
             module: 'app/components/board/Api'

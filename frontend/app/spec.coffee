@@ -1,6 +1,4 @@
 define
-    hello: 'internet'
-
     layout:
         render:
             template:
@@ -22,13 +20,11 @@ define
 
         properties:
             _layout: $ref: 'layout'
-            _boardLocation: null
             _makeBoard:
                 wire:
                     defer: true
-                    spec: 'app/components/board'
+                    spec: 'app/components/board/spec'
                     provide:
-                        root: $ref: 'boardFactory._boardLocation'
                         gameManager: $ref: 'gameManager'
 
         connect:

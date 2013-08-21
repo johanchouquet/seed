@@ -1,9 +1,9 @@
 `define([
     'jquery',
     'lodash',
-    'when/sequence'
+    'when/parallel'
 ],
-function(jQuery, _, sequence){`
+function(jQuery, _, parallel){`
 
 class BoardFactory
 
@@ -21,15 +21,9 @@ class BoardFactory
     ]
 
     setupBoards: ->
-        success = (board) ->
-            window.board = board
-        fail = (error) ->
-            console.log error
-            console.log error.stack
-
         boardNames = _.clone @BOARD_NAMES
         tasks = (@_generateBoard for name in boardNames)
-        sequence(tasks, boardNames). then => @_boardsCreated()
+        parallel(tasks, boardNames).then @_boardsCreated
 
     _generateBoard: (boardNames) =>
         boardName = boardNames.pop()
@@ -40,8 +34,7 @@ class BoardFactory
             return board
 
     makeBoard: (element) ->
-        @_boardLocation = element
-        @_makeBoard()
+        @_makeBoard root: element
 
 return BoardFactory
 
