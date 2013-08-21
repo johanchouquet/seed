@@ -1,9 +1,9 @@
 `define([
     'jquery',
     'lodash',
-    'when/parallel'
+    'when/sequence'
 ],
-function(jQuery, _, parallel){`
+function(jQuery, _, sequence){`
 
 class BoardFactory
 
@@ -24,12 +24,10 @@ class BoardFactory
         # Create tasks to create boards. Iterates over BOARD_NAMES and
         # creates a partial for each. e.g. _generateBoard('TL')
         tasks = (@_generateBoard.bind(this, boardName) for boardName in @BOARD_NAMES)
-        parallel(tasks).then @_boardsCreated
+        sequence(tasks).then @_boardsCreated
 
     _generateBoard: (boardName) =>
-        elementName = ".board-#{boardName}"
-        element = jQuery(@_layout).find(elementName)[0]
-        @makeBoard(element).then (board) =>
+        @makeBoard(@_layout).then (board) =>
             @_boardCreated boardName, board.api
             return board
 

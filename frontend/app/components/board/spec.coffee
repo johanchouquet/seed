@@ -25,7 +25,7 @@ define
             css:
                 module: 'css!app/components/board/views/board.css'
         insert:
-            at:
+            last:
                 $ref: 'root'
 
     boardViewmodel:
