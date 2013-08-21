@@ -7,6 +7,9 @@ class Cell
     constructor: (name) ->
         @name = name
         @value = ko.observable()
+        @cssClass = ko.computed =>
+            "#{@name} #{if @value() then "selected" else ""}"
+
 
 class Board
 
@@ -15,6 +18,16 @@ class Board
         'ML', 'MM', 'MR'
         'BL', 'BM', 'BR'
     ]
+
+    # INPUT
+    startTurn: (player) ->
+        @boardEnabled true
+        @currentPlayer player
+
+    # OUTPUT
+    turnFinished: (cell) ->
+        @boardEnabled false
+        [cell, @checkWinner()]
 
     constructor: (@element) ->
         @winCheck = new CheckWinner()
@@ -29,16 +42,6 @@ class Board
         for cellName in @CELL_NAMES
             cell = new Cell cellName
             @cells.push cell
-
-    # INPUT
-    startTurn: (player) ->
-        @boardEnabled true
-        @currentPlayer player
-
-    # OUTPUT
-    turnFinished: (cell) ->
-        @boardEnabled false
-        [cell, @checkWinner()]
 
     checkWinner: ->
         current = {}

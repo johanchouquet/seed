@@ -21,12 +21,12 @@ class BoardFactory
     ]
 
     setupBoards: ->
-        boardNames = _.clone @BOARD_NAMES
-        tasks = (@_generateBoard for name in boardNames)
-        parallel(tasks, boardNames).then @_boardsCreated
+        # Create tasks to create boards. Iterates over BOARD_NAMES and
+        # creates a partial for each. e.g. _generateBoard('TL')
+        tasks = (@_generateBoard.bind(this, boardName) for boardName in @BOARD_NAMES)
+        parallel(tasks).then @_boardsCreated
 
-    _generateBoard: (boardNames) =>
-        boardName = boardNames.pop()
+    _generateBoard: (boardName) =>
         elementName = ".board-#{boardName}"
         element = jQuery(@_layout).find(elementName)[0]
         @makeBoard(element).then (board) =>

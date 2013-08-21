@@ -1,10 +1,15 @@
-<div class="board" data-bind="css: {highlight: highlighted, active: boardEnabled, 'active-O': currentPlayer() == 'O', 'active-X': currentPlayer() == 'X' }">
+<div class="board" data-bind="css: {
+    highlight: highlighted,
+    active: boardEnabled,
+    'active-O': currentPlayer() == 'O',
+    'active-X': currentPlayer() == 'X'
+}">
     <!-- ko if: winner -->
     <span data-bind="text: winner"></span>
     <!-- /ko -->
     <!-- ko ifnot: winner -->
         <!-- ko foreach: cells -->
-        <div data-bind="click: $parent.clicked, css: name, text: value"></div>
+        <div data-bind="click: $parent.clicked, css: cssClass, text: value"></div>
         <!-- /ko -->
     <!-- /ko -->
 </div>

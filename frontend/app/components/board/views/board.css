@@ -20,6 +20,9 @@
     content: "X";
     color: #999;
 }
+.board.active div.selected:hover:after {
+    content: none;
+}
 .board div {
     float: left;
     width: 50px;
