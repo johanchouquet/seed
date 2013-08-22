@@ -13,10 +13,14 @@ define
     api:
         create:
             module: 'app/components/board/Api'
+        properties:
+            _board: $ref: 'boardViewmodel'
         connect:
             startTurn: 'boardViewmodel.startTurn'
-            _turnFinished: 'gameManager.turnFinished'
             highlight: 'boardViewmodel.highlight'
+            _turnFinished: 'gameManager.turnFinished'
+        after:
+            'boardViewmodel.turnFinished': 'turnFinished'
 
     boardView:
         render:
@@ -36,8 +40,6 @@ define
             ]
 
         ready: "init"
-        after:
-            turnFinished: 'api.turnFinished'
 
     plugins: [
         # { module: 'wire/debug', trace: false }

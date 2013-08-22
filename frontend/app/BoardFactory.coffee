@@ -1,9 +1,8 @@
 `define([
-    'jquery',
     'lodash',
     'when/sequence'
 ],
-function(jQuery, _, sequence){`
+function(_, sequence){`
 
 class BoardFactory
 
@@ -20,18 +19,25 @@ class BoardFactory
         'BL', 'BM', 'BR'
     ]
 
+    # Creates all 9 boards using a single component
+    #
+    # Iterates over BOARD_NAMES and creates a partial for each.
+    # e.g. _generateBoard('TL'). Each task returns a promise.
+    #
+    # Sequence will run each promise in turn so that they appear in the right
+    # order in the UI. After all promises are resolved then it will notify the
+    # game manager that all boards are created.
     setupBoards: ->
-        # Create tasks to create boards. Iterates over BOARD_NAMES and
-        # creates a partial for each. e.g. _generateBoard('TL')
         tasks = (@_generateBoard.bind(this, boardName) for boardName in @BOARD_NAMES)
-        # We perform these tasks in sequence so they appear in the right order
-        # in the UI and then notify the game manager that all boards are created
         sequence(tasks).then @_boardsCreated
 
+    # Creates a single instance of the board and registers it with the gameManager
+    #
+    # _makeBoard has been injected by the spec and runs the wire spec for the
+    # board component. It allows you to mixin another spec, which in this case
+    # is just the root variable, which is the dom element to add the board
+    # node to.
     _generateBoard: (boardName) =>
-        # _makeBoard calls the wire spec for the board component
-        # and injects the root element. On finish we notify the Game
-        # manager that the baord has been cretaed
         @_makeBoard(root: @_layout).then (board) =>
             @_boardCreated boardName, board.api
             return board

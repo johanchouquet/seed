@@ -1,5 +1,5 @@
 .boards {
-    float: left;
+    margin: 0px auto;
     width: 725px;
     height: 725px;
     overflow: auto;

@@ -10,7 +10,6 @@ class Cell
         @cssClass = ko.computed =>
             "#{@name} #{if @value() then "selected" else ""}"
 
-
 class Board
 
     CELL_NAMES:  [
@@ -18,6 +17,7 @@ class Board
         'ML', 'MM', 'MR'
         'BL', 'BM', 'BR'
     ]
+    winner: null
 
     # INPUT
     startTurn: (player) ->
@@ -25,9 +25,14 @@ class Board
         @currentPlayer player
 
     # OUTPUT
-    turnFinished: (cell) ->
+    turnFinished: (selectedCell) ->
         @boardEnabled false
-        [cell, @checkWinner()]
+        @checkWinner()
+        selectedCell
+
+    # OUTPUT
+    getWinner: ->
+        @winner()
 
     constructor: (@element) ->
         @winCheck = new CheckWinner()
@@ -48,7 +53,7 @@ class Board
         for cell in @cells()
             current[cell.name] = cell.value()
         winner = @winCheck.checkWinner current
-        @winner winner
+        feck = @winner winner
         winner
 
     highlight: ->
