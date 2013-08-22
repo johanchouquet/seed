@@ -13,8 +13,7 @@ class Game
         @checkWinner = new CheckWinner()
 
     # INPUT
-    # Register this board, including its location name. Keep final
-    # board score here too.
+    # Register this board as its location
     registerBoard: (boardName, board) ->
         @BOARDS[boardName] = board
 
@@ -23,17 +22,31 @@ class Game
     start: ->
         @nextTurn 'TL'
 
+    # Change player and instruct the next board to start
+    # its turn
     nextTurn: (cellName) ->
-        @changePlayer()
+        nextPlayer = @changePlayer()
         nextBoard = @BOARDS[cellName]
-        if not nextBoard.getWinner()
-            nextBoard.startTurn @currentPlayer
+        nextBoard.startTurn nextPlayer
 
-    checkResult: ->
-        current = {}
-        for boardName, boardObj of @BOARDS
-            current[boardName] = boardObj.getWinner()
-        @checkWinner.getWinner current
+    # INPUT
+    # When a board has finished its turn then this is called. Check for
+    # a winnin line otherwise start the next turn.
+    turnFinished: (selectedCell, board) ->
+        [winner, winningLine] = @checkForWinner()
+
+        # If finished then highlight the winner
+        if winner
+            @BOARDS[l].highlight() for l in winningLine
+
+        # Else activate game in last selected cell if possible
+        else if not @BOARDS[selectedCell].getWinner()
+            @nextTurn selectedCell
+
+        # Else go again on same board
+        else
+            boardName = _.findKey @BOARDS, board
+            @nextTurn boardName
 
     changePlayer: ->
         if @currentPlayer is 'X'
@@ -41,23 +54,11 @@ class Game
         else
             @currentPlayer = 'X'
 
-    turnFinished: (selectedCell, board) ->
-        [result, winningLine] = @checkResult()
-
-        # If finished then highlight the winner
-        if result
-            console.log winningLine
-            @BOARDS[l].highlight() for l in winningLine
-
-        # Else activate game in last selected cell if not finished
-        else if not @BOARDS[selectedCell].getWinner()
-            @nextTurn selectedCell
-
-        # Else go again on same board
-        else
-            boardName = _.findKey @BOARDS, (boardObj) ->
-                board is boardObj
-            @nextTurn boardName
+    checkForWinner: ->
+        current = {}
+        for boardName, boardObj of @BOARDS
+            current[boardName] = boardObj.getWinner()
+        @checkWinner.getWinner current
 
 return Game
 

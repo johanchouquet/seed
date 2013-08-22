@@ -11,11 +11,6 @@ define
             at:
                 $ref: 'dom.first!body'
 
-    # Controls flow of game
-    gameManager:
-        create:
-            module: 'app/Game'
-
     # Generates all the boards from the board spec
     boardFactory:
         create:
@@ -35,12 +30,21 @@ define
 
         # Connect some of these methods to gameManager
         connect:
+            # Note the method naming, the board factory emits a 'boardCreated'
+            # event effectively, which we connect to the 'registerBoard'
+            # input of the gameManager. This means they are even decoupled
+            # by name.
             '_boardCreated': 'gameManager.registerBoard'
-            '_boardsCreated': 'gameManager.start'
+            '_allBoardsCreated': 'gameManager.start'
 
         # Runs 'setupBoards' when this component is ready and
         # starts off the app!
         ready: 'setupBoards'
+
+    # Controls flow of game
+    gameManager:
+        create:
+            module: 'app/Game'
 
     plugins: [
         # { module: 'wire/debug', trace: false }

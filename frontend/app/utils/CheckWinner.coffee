@@ -23,7 +23,7 @@ class CheckWinner
             ['TR', 'MR', 'BR']
 
             ['TL', 'MM', 'BR']
-            ['TT', 'MM', 'BL']
+            ['TR', 'MM', 'BL']
         ]
 
         for win in winners

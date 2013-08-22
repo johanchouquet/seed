@@ -1,14 +1,8 @@
 `define([
     'knockout',
+    './Cell',
     'app/utils/CheckWinner'
-], function(ko, CheckWinner){`
-
-class Cell
-    constructor: (name) ->
-        @name = name
-        @value = ko.observable()
-        @cssClass = ko.computed =>
-            "#{@name} #{if @value() then "selected" else ""}"
+], function(ko, Cell, CheckWinner){`
 
 class Board
 
@@ -38,6 +32,11 @@ class Board
         @winCheck = new CheckWinner()
         @properties()
 
+    init: ->
+        ko.applyBindings this, @element
+
+    # Set up the viewmodel. Create a cell viewmodel for each location, which
+    # allows keeping track of game state a lot simpler
     properties: ->
         @highlighted = ko.observable false
         @boardEnabled = ko.observable false
@@ -52,12 +51,10 @@ class Board
         current = {}
         for cell in @cells()
             current[cell.name] = cell.value()
-        winner = @winCheck.checkWinner current
-        feck = @winner winner
-        winner
+        @winner @winCheck.checkWinner current
+        @winner()
 
     highlight: ->
-        console.log "I WINZ"
         @highlighted true
 
     clicked: (model, event) =>
@@ -65,10 +62,6 @@ class Board
         if not model.value()
             model.value @currentPlayer()
             @turnFinished model.name
-
-    init: ->
-        ko.applyBindings this, @element
-
 
 return Board
 

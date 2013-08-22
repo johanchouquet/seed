@@ -2,24 +2,24 @@
 
 class Api
 
-    # Output
-    _turnFinished: (selectedCell, boardApi) ->
-
     # Start turn for player
     startTurn: ->
 
-    # Check if there is a winner
-    getWinner: ->
-        @_board.getWinner()
-
-    # Turn finished
+    # After turn finished. Send the selected cell back to the game manager
+    # with a reference to ourself so it knows who we are
     turnFinished: (selectedCell) ->
         @_turnFinished selectedCell, this
 
-    # Instrcut board to highlight as this was on
+    # Return if there is a winner
+    getWinner: ->
+        @_board.getWinner()
+
+    # Instruct board to highlight as this was on
     # winnning line
     highlight: ->
 
+    # Output
+    _turnFinished: (selectedCell, boardApi) ->
 
 return Api
 

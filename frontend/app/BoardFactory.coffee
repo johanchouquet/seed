@@ -11,7 +11,7 @@ class BoardFactory
 
     # Output
     _boardCreated: ->
-    _boardsCreated: ->
+    _allBoardsCreated: ->
 
     BOARD_NAMES:  [
         'TL', 'TM', 'TR'
@@ -29,7 +29,7 @@ class BoardFactory
     # game manager that all boards are created.
     setupBoards: ->
         tasks = (@_generateBoard.bind(this, boardName) for boardName in @BOARD_NAMES)
-        sequence(tasks).then @_boardsCreated
+        sequence(tasks).then @_allBoardsCreated
 
     # Creates a single instance of the board and registers it with the gameManager
     #
