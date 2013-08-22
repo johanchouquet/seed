@@ -38,7 +38,13 @@ class Game
         else if not @BOARDS[selectedCell].getWinner()
             @nextTurn selectedCell
 
-        # Else go again on same board
+        # Else go again on same board. Actually you could have a situation
+        # where you
+        # - last clicked the TL square
+        # - but the TL board s a winner
+        # - so you select the last board
+        # - however this is the TL board, and so the game is stuck
+        # In this case we should probably allow any board to be clicked on
         else
             boardName = _.findKey @BOARDS, board
             @nextTurn boardName
