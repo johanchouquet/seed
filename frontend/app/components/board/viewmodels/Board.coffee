@@ -4,6 +4,9 @@
     'app/utils/CheckWinner'
 ], function(ko, Cell, CheckWinner){`
 
+# Single board which does not know about its existent within a larger game or
+# anything other than which element it is going to bind to. This means it merely
+# receives instructions to start a turn, and outputs the result of that turn.
 class Board
 
     CELL_NAMES:  [

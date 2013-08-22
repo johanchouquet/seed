@@ -4,6 +4,8 @@
 ]
 ,function(_, CheckWinner){`
 
+# Controls the flow of the game. The boards are registered with the manager by
+# the board factory.
 class Game
 
     BOARDS: {}
@@ -21,13 +23,6 @@ class Game
     # Called when all boards are registered, starts game
     start: ->
         @nextTurn 'TL'
-
-    # Change player and instruct the next board to start
-    # its turn
-    nextTurn: (cellName) ->
-        nextPlayer = @changePlayer()
-        nextBoard = @BOARDS[cellName]
-        nextBoard.startTurn nextPlayer
 
     # INPUT
     # When a board has finished its turn then this is called. Check for
@@ -47,6 +42,13 @@ class Game
         else
             boardName = _.findKey @BOARDS, board
             @nextTurn boardName
+
+    # Change player and instruct the next board to start
+    # its turn
+    nextTurn: (cellName) ->
+        nextPlayer = @changePlayer()
+        nextBoard = @BOARDS[cellName]
+        nextBoard.startTurn nextPlayer
 
     changePlayer: ->
         if @currentPlayer is 'X'
