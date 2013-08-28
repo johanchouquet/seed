@@ -58,4 +58,4 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks 'grunt-contrib-jasmine'
     grunt.loadNpmTasks 'grunt-shell'
 
-    grunt.registerTask 'default', ['coffee', 'watch']
+    grunt.registerTask 'default', ['coffee', 'jasmine:seed', 'watch']
