@@ -5,6 +5,7 @@
     "curl": "~0.8",
     "wire": "~0.10",
     "meld": "~1",
-    "when": "~2"
+    "when": "~2",
+    "normalize-css": ""
   }
 }

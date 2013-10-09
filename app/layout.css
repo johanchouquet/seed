@@ -1,0 +1,36 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'arial';
+    height: 100%;
+}
+
+.container {
+    height: 100%;
+    min-height: 100%;
+}
+
+.top-menu {
+    height: 60px;
+    background: #e5e5e5;
+    border-bottom: 1px solid #ccc;
+}
+
+.center-container {
+    height: 100%;
+    min-height: 100%;
+}
+
+.left-menu {
+    float: left;
+    width: 205px;
+    height: 100%;
+    min-height: 100%;
+    border-right: 1px solid #ccc;
+}
+
+.main-content {
+    margin-left: 205px;
+    height: 100%;
+    min-height: 100%;
+}
