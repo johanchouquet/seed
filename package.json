@@ -1,0 +1,20 @@
+{
+  "name": "seed",
+  "version": "1.0.0",
+  "devDependencies": {
+    "bower": "",
+    "serv": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gehan/seed"
+  },
+  "author": {
+    "name": "Gehan Gonsalkorale",
+    "web": "http://github.com/gehan"
+  },
+  "scripts": {
+    "postinstall": "bower install",
+    "start": "serv --public --port 8000"
+  }
+}

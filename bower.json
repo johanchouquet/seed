@@ -1,0 +1,10 @@
+{
+  "name": "Seed",
+  "dependencies": {
+    "jquery": "1.10.2",
+    "curl": "~0.8",
+    "wire": "~0.10",
+    "meld": "~1",
+    "when": "~2"
+  }
+}

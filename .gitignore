@@ -2,7 +2,6 @@
 .*
 !.gitmodules
 *.pyo
-frontend/node_modules
-frontend/lib
+/node_modules
+/lib
 _SpecRunner.html
-frontend/.compiled
