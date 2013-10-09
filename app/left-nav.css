@@ -1,0 +1,53 @@
+.left-nav-view {
+}
+.left-nav-view .top-part {
+    padding-left: 31px;
+    color: #DD4B38;
+    height: 47px;
+    font-size: 14pt;
+    line-height: 48px;
+    border-bottom: 1px solid #e5e5e5;
+}
+.left-nav-view button.compose {
+    margin-top: 9px;
+    margin-left: 31px;
+    background-color: #d14836;
+    background-image: -webkit-linear-gradient(top,#dd4b39,#d14836);
+    border: none;
+    color: #fff;
+    border-radius: 3px;
+    padding: 5px;
+    width: 115px;
+    height: 29px;
+    line-height: 17px;
+    font-size: 8pt;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.left-nav-view ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 3px;
+    margin-top: 10px;
+}
+.left-nav-view li {
+    padding-left: 32px;
+    line-height: 18px;
+}
+.left-nav-view li:hover {
+    cursor: pointer;
+    background: #eee;
+}
+.left-nav-view li.selected {
+    color: #DD4B38;
+    font-weight: bold;
+    position: relative;
+}
+.left-nav-view li.selected:before {
+    position: absolute;
+    content: "";
+    width: 3px;
+    height: 18px;
+    background: #DD4B38;
+    left: -3px;
+}
