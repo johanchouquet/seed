@@ -32,6 +32,22 @@ define({
         ready: 'fetch'
     },
 
+    emailPreviewView: {
+        create: {
+            module: 'app/EmailPreviewView',
+            args: [{
+                el: {
+                    $ref: 'dom.first!.main-content-body',
+                    at: 'layout'
+                },
+                collection: {
+                    $ref: 'emailPreviewCollection'
+                }
+            }]
+        },
+        ready: 'render'
+    },
+
     plugins: ['wire/dom', 'wire/dom/render']
 
 });
