@@ -6,6 +6,8 @@
     "wire": "~0.10",
     "meld": "~1",
     "when": "~2",
-    "normalize-css": ""
+    "normalize-css": "",
+    "backbone": "1.0.0",
+    "lodash": "~2"
   }
 }

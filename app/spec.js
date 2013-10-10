@@ -21,6 +21,17 @@ define({
         }
     },
 
+    // Backbone email collection
+    emailPreviewCollection: {
+        create: {
+            module: 'app/EmailPreviewsCollection'
+        },
+        properties: {
+            url: 'app/emailPreviews.json'
+        },
+        ready: 'fetch'
+    },
+
     plugins: ['wire/dom', 'wire/dom/render']
 
 });

@@ -10,8 +10,13 @@
             { name: 'wire', location: 'lib/wire', main: 'wire' },
             { name: 'meld', location: 'lib/meld', main: 'meld' },
             { name: 'when', location: 'lib/when', main: 'when' },
-            { name: 'poly', location: 'lib/poly' }
-        ]
+            { name: 'poly', location: 'lib/poly' },
+            { name: 'backbone', location: 'lib/backbone', main: 'backbone',
+                config: {loader: 'curl/loader/cjsm11'}
+            },
+            { name: 'underscore', location: 'lib/lodash/dist', main: 'lodash.min'}
+        ],
+        preloads: ['jquery']
     };
 
     // If our app starts correctly then log and make the context available
