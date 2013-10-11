@@ -6,18 +6,14 @@
     <div class="main-content-body">
         <table>
             <tbody>
+                <% _.each(data, function(email){ %>
                 <tr>
                     <td class="checkbox"><input type="checkbox" /></td>
-                    <td class="authors">John Silver</td>
-                    <td class="subject">Hello there mate<span class="preview"> - This is the best thing</span></td>
-                    <td class="date">12th Oct</td>
+                    <td class="authors"><%= email.author.name %></td>
+                    <td class="subject"><%= email.subject %><span class="preview"> - <%= email.preview %></span></td>
+                    <td class="date"><%= email.date %></td>
                 </tr>
-                <tr>
-                    <td class="checkbox"><input type="checkbox" /></td>
-                    <td class="authors">Dave Legend</td>
-                    <td class="subject">Alright mate<span class="preview"> - Haven't seen you in a while</span></td>
-                    <td class="date">15th Oct</td>
-                </tr>
+                <% }); %>
             </tbody>
         </table>
     </div>

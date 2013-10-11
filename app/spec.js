@@ -29,7 +29,10 @@ define({
         properties: {
             url: 'app/emailPreviews.json'
         },
-        ready: 'fetch'
+        ready: 'fetch',
+        after: {
+            fetch: 'emailPreviewView.render'
+        }
     },
 
     emailPreviewView: {
@@ -46,10 +49,9 @@ define({
             template: {
                 module: 'text!app/main-content.html'
             }
-        },
-        ready: 'render'
+        }
     },
 
-    plugins: ['wire/dom', 'wire/dom/render']
+    plugins: ['wire/dom', 'wire/dom/render', 'wire/aop']
 
 });

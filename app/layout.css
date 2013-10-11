@@ -153,6 +153,10 @@ button:focus {
 .main-content-body td.authors {
     width: 200px;
 }
+.main-content-body td.subject {
+    white-space: nowrap;
+    overflow: hidden;
+}
 .main-content-body td.subject .preview {
     color: #999;
 }

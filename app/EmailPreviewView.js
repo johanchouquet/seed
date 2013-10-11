@@ -10,9 +10,10 @@ var EmailPreviewView = Backbone.View.extend({
     el: null,
     template: null,
 
-    render: function(){
+    render: function(data){
+        data = data || {};
         var compiled = _.template(this.template),
-            html = compiled();
+            html = compiled({data: data});
         this.$el.html(html);
     }
 
