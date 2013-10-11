@@ -35,15 +35,17 @@ define({
     emailPreviewView: {
         create: {
             module: 'app/EmailPreviewView',
-            args: [{
+            args:[{
                 el: {
-                    $ref: 'dom.first!.main-content-body',
+                    $ref: 'dom.first!.main-content',
                     at: 'layout'
-                },
-                collection: {
-                    $ref: 'emailPreviewCollection'
                 }
             }]
+        },
+        properties: {
+            template: {
+                module: 'text!app/main-content.html'
+            }
         },
         ready: 'render'
     },
