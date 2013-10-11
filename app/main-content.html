@@ -7,7 +7,7 @@
         <table>
             <tbody>
                 <% _.each(data, function(email){ %>
-                <tr>
+                <tr class="email" data-id="<%= email.id %>">
                     <td class="checkbox"><input type="checkbox" /></td>
                     <td class="authors"><%= email.author.name %></td>
                     <td class="subject"><%= email.subject %><span class="preview"> - <%= email.preview %></span></td>

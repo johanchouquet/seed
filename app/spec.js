@@ -49,7 +49,13 @@ define({
             template: {
                 module: 'text!app/main-content.html'
             }
+        },
+        after: {
+            'emailClicked': 'emailView.showEmail'
         }
+    },
+
+    emailView: {
     },
 
     plugins: ['wire/dom', 'wire/dom/render', 'wire/aop']
