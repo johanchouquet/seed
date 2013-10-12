@@ -18,7 +18,6 @@ var EmailPreviewView = Backbone.View.extend({
     emailClicked: function (event) {
         var el = jQuery(event.currentTarget);
             emailId = el.attr('data-id');
-        console.log('show', emailId);
         return emailId;
     },
 

@@ -51,13 +51,28 @@ define({
             }
         },
         after: {
-            'emailClicked': 'emailView.showEmail'
-        }
+            'emailClicked': 'emailView.render'
+        },
+        ready: 'delegateEvents'
     },
 
     emailView: {
+        create: {
+            module: 'app/EmailView',
+            args: [{
+                el: {
+                    $ref: 'dom.first!.main-content',
+                    at: 'layout'
+                }
+            }]
+        },
+        properties: {
+            template: {
+                module: 'text!app/email-content.html'
+            }
+        }
     },
 
-    plugins: ['wire/dom', 'wire/dom/render', 'wire/aop']
+    plugins: ['wire/dom', 'wire/dom/render', 'wire/aop', 'wire/connect']
 
 });
