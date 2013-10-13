@@ -70,7 +70,11 @@ define({
             template: {
                 module: 'text!app/email-content.html'
             }
-        }
+        },
+        after: {
+            'backToList': 'emailPreviewView.render'
+        },
+        ready: 'delegateEvents'
     },
 
     plugins: ['wire/dom', 'wire/dom/render', 'wire/aop', 'wire/connect']

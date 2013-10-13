@@ -11,6 +11,9 @@ var EmailPreviewView = Backbone.View.extend({
     el: null,
     template: null,
 
+    // Cache current data
+    data: {},
+
     events: {
         'click .email': 'emailClicked'
     },
@@ -22,7 +25,8 @@ var EmailPreviewView = Backbone.View.extend({
     },
 
     render: function(data){
-        data = data || {};
+        data = data || this.data;
+        this.data = data;
         var compiled = _.template(this.template),
             html = compiled({data: data});
         this.$el.html(html);
