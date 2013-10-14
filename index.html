@@ -2,6 +2,15 @@
     <head>
         <title>WireMail Tutorial</title>
         <link rel="stylesheet" href="style.css" />
+        <script src="lib/jquery/jquery.js"></script>
+        <script>
+        $(function(){
+            $('pre.html').each(function(){
+                var html = $(this).html();
+                $(this).text(html);
+            });
+        });
+        </script>
     </head>
     <body>
         <h1>Wire Mail Tutorial</h1>
@@ -48,7 +57,7 @@
                     <td>
                         3 - Inject Their Dependencies
                         <ul>
-                            <li>Inject dependent modules instead of having hard coding instatiation inside</li>
+                            <li>Inject dependent modules instead of having hard coded instatiation inside</li>
                         </ul>
                     </td>
                     <td class="image"><img src="images/3-inject.png"></td>
@@ -86,7 +95,6 @@
     git checkout wire
         </pre>
 
-
         <p>
             To run the webserver and install our libraries we use node.js. When you have node just go to the root of this repo and run this to download everything:
         </p>
@@ -119,6 +127,96 @@
         <p>
             An empty wire environment should be running. Let's quickly explain how this is happening before we move onto something more visible!
         </p>
+
+        <h3>index.html - minimal shell for app</h3>
+
+        <p>Your index.html looks quite small doesn't it? It now serves as a minimal shell to start up your app.</p>
+
+        <pre class="html">
+<!--
+    <html>
+        <head>
+            <title>Seed App</title>
+            <script src="/lib/curl/src/curl.js"></script>
+            <script src="/app/run.js"></script>
+        </head>
+        <body>
+        </body>
+    </html>
+-->
+        </pre>
+
+        <h3>run.js - configure your packages and start the app</h3>
+
+        <p>Here we define any AMD packages we are going to use, and start up our wire spec!</p>
+
+        <pre class="javascript">
+    (function(curl){
+
+        // Configure all our module paths
+        var config = {
+            paths: {
+                'jquery': 'lib/jquery/jquery'
+            },
+            packages: [
+                { name: 'curl', location: 'lib/curl/src/curl' },
+                { name: 'wire', location: 'lib/wire', main: 'wire' },
+                { name: 'meld', location: 'lib/meld', main: 'meld' },
+                { name: 'when', location: 'lib/when', main: 'when' },
+                { name: 'poly', location: 'lib/poly' }
+            ]
+        };
+
+        // If our app starts correctly then log and make the context available
+        var success = function (context) {
+            console.log('Spec loading OK! Context available as \'context\'');
+            window.context = context;
+        };
+
+        // If something goes wrong then we log that error
+        var fail = function (error) {
+            console.log('Error loading spec');
+            console.error(error.stack);
+        };
+
+        // Start up the app! Runs our app/spec.js through wire. Curl is
+        // promise-based so we can pass the result to our success/failure handlers
+        curl(config, ['wire!app/spec']).then(success, fail);
+
+    })(curl);
+        </pre>
+
+        <h3>spec.js - our wire environment</h3>
+
+        <p>Finally - this is where the magic happens - the wire spec!</p>
+
+        <pre class="javascript">
+    define({
+
+        hello: 'world'
+
+    });
+        </pre>
+
+        <p>If you looked closely at the run.js you'll see that window.context has been set. If you type 'context.hello' in the console you should now get 'world'. We'll come onto what this means later</p>
+
+        <p>For now our spec is looking a little tiny. Let's put something in it to show you what it can do - move to step 2!</p>
+
+        <h2 id="step2">step 2 - start with a view</h2>
+        <p>
+            To show how wire.js works, let's load up some good old html and css for our Mail App. We'll start with a static template and make it dynamic later.
+        </p>
+
+        <p>New files:</p>
+        <ul>
+            <li><a href="https://github.com/gehan/seed/blob/wire-html/app/layout.html">app/layout.html</a></li>
+            <li><a href="https://github.com/gehan/seed/blob/wire-html/app/layout.css">app/layout.css</a></li>
+        </ul>
+
+        <p>So how do we get these into the DOM without touching index.html?</p>
+
+        <p>The concept we'd like to introduce to do is component factories</p>
+
 
     </body>
 </html>
