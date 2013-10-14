@@ -1,5 +1,124 @@
 <html>
     <head>
         <title>WireMail Tutorial</title>
+        <link rel="stylesheet" href="style.css" />
     </head>
+    <body>
+        <h1>Wire Mail Tutorial</h1>
+
+        <h2>Contents</h2>
+        <ul>
+            <li><a href="#intro">wire.js - benefits</a></li>
+            <li><a href="#step0">step 0 - get repo and install requirements</a></li>
+            <li><a href="#step1">step 1 - start your environment</a></li>
+        </ul>
+
+        <h2 id="intro">wire.js - benefits: a structured environment for you app</h2>
+        <table class="benefits">
+            <tbody>
+                <tr>
+                    <td>
+                        1 - Be Modular
+                        <ul>
+                            <li>Create the boxes in your systems diagram in one place</li>
+                        </ul>
+                    </td>
+                    <td class="image"><img src="images/1-modular.png"></td>
+                    <td>
+                        <ul>
+                            <li>No bootstrap!</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        2 - Connect Your Modules
+                        <ul>
+                            <li>Draw the lines in your systems diagram</li>
+                        </ul>
+                    </td>
+                    <td class="image"><img src="images/2-connect.png"></td>
+                    <td>
+                        <ul>
+                            <li>No manual connection code!</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        3 - Inject Their Dependencies
+                        <ul>
+                            <li>Inject dependent modules instead of having hard coding instatiation inside</li>
+                        </ul>
+                    </td>
+                    <td class="image"><img src="images/3-inject.png"></td>
+                    <td>
+                        <ul>
+                            <li>No manual dependency resolution!</li>
+                            <li>More testable modules</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        4 - Control Their Lifecycle
+                        <ul>
+                            <li>Control how the right things happen at the right time</li>
+                        </ul>
+                    </td>
+                    <td class="image"><img src="images/4-lifecycle.png"></td>
+                    <td>
+                        <ul>
+                            <li>Ensure each component is cleaned up</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 id="step0">step 0 - get repo and install requirements</h2>
+        <p>
+            For best results you'll want to fetch the tutorial so you can play along. We use git for source control. When you have git just clone this repo like so:
+        </p>
+
+        <pre>
+    git clone git@github.com:gehan/seed.git
+    git checkout wire
+        </pre>
+
+
+        <p>
+            To run the webserver and install our libraries we use node.js. When you have node just go to the root of this repo and run this to download everything:
+        </p>
+
+        <pre>
+    npm install
+        </pre>
+
+        <p>
+            This will install a small webserver, our js package manager bower, and download all the libraries. To start the server run:
+        </p>
+
+        <pre>
+    npm start
+        </pre>
+
+        <p>
+            Point your browser (Chrome ideally) to http://localhost:8000/ and you should see this in the console
+        </p>
+
+        <pre>
+    Spec loading OK! Context available as 'context'
+        </pre>
+
+        <p>
+            After this you're all ready to go! Head to step 1 to get building this app!
+        </p>
+
+        <h2 id="step1">step 1 - your new environment!</h2>
+        <p>
+            An empty wire environment should be running. Let's quickly explain how this is happening before we move onto something more visible!
+        </p>
+
+    </body>
 </html>

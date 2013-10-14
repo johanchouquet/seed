@@ -1,0 +1,6 @@
+table.benefits tr td {
+    padding-bottom: 50px;
+}
+table.benefits td.image {
+    text-align: center;
+}
