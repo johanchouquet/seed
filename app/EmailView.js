@@ -6,6 +6,10 @@ function(Backbone, _){
 
 var EmailView = Backbone.View.extend({
 
+    // Properties
+    el: null,
+    template: null,
+
     events: {
         'click button.back': 'backToList'
     },
@@ -16,7 +20,7 @@ var EmailView = Backbone.View.extend({
     render: function(data){
         data = data || {};
         var compiled = _.template(this.template),
-            html = compiled({data: data});
+            html = compiled({email: data});
         this.$el.html(html);
     }
 

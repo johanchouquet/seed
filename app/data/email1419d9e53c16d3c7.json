@@ -1,0 +1,14 @@
+{
+    "id": "1419d9e53c16d3c7",
+    "subject": "Impromptu Wed Beers",
+    "messages": [{
+        "author": {
+            "name": "James Cole",
+            "email": "coley@gmail.com"
+        },
+        "to": [
+        ],
+        "date": "9 Oct",
+        "body": "Great body text"
+    }]
+}

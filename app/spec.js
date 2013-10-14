@@ -27,7 +27,7 @@ define({
             module: 'app/EmailPreviewsCollection'
         },
         properties: {
-            url: 'app/emailPreviews.json'
+            url: 'app/data/emailPreviews.json'
         },
         ready: 'fetch',
         after: {
@@ -51,11 +51,22 @@ define({
             }
         },
         after: {
-            'emailClicked': 'emailView.render'
+            'emailClicked': 'emailModel.loadEmail'
         },
         ready: 'delegateEvents'
     },
 
+    emailModel: {
+        create: {
+            module: 'app/EmailModel'
+        },
+        properties: {
+            urlRoot: 'app/data/email{id}.json'
+        },
+        after: {
+            fetch: 'emailView.render'
+        }
+    },
     emailView: {
         create: {
             module: 'app/EmailView',

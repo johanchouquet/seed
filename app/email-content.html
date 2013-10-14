@@ -7,18 +7,18 @@
         <div class="email-profile">
         </div>
         <div class="email-content-body">
-            <h1>Subject</h1>
+            <h1><%= email.subject %></h1>
+            <% _.each(email.messages, function(message){ %>
             <div class="email-header">
                 <div class="profile-image"><img src="/app/profile.png" /></div>
                 <div class="author-to">
-                    <div class="email-author">Some Person</div>
+                    <div class="email-author"><%= message.author.name %></div>
                     <div class="email-to">to people</div>
                 </div>
                 <div class="date"></div>
             </div>
-            <div class="email-body">
-                Interesting email text goes here.
-            </div>
+            <div class="email-body"><%= message.body %></div>
+            <% }); %>
         </div>
     </div>
 </div>

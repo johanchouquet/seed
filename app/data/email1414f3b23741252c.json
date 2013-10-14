@@ -1,0 +1,14 @@
+{
+    "id": "1414f3b23741252c",
+    "subject": "My Stag Do - Amsterdam",
+    "messages": [{
+        "author": {
+            "name": "Andrew Mead",
+            "email": "meady@gmail.com"
+        },
+        "to": [
+        ],
+        "date": "17:54",
+        "body": "Interesting email"
+    }]
+}

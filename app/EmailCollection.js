@@ -1,8 +1,8 @@
 define(['backbone'], function(Backbone) {
 
-var EmailPreviewsCollection = Backbone.Collection.extend({
+var EmailCollection = Backbone.Collection.extend({
 });
 
-return EmailPreviewsCollection;
+return EmailCollection;
 
 });
