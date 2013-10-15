@@ -221,7 +221,7 @@
 
         <h3>spec.js - our wire environment</h3>
 
-        <p>Finally - this is where the magic happens - the wire spec!</p>
+        <p>Finally - this is where all happens - the wire spec!</p>
 
         <pre><code class="javascript">
     define({
@@ -248,8 +248,53 @@
 
         <p>So how do we get these into the DOM without touching index.html?</p>
 
-        <p>The concept we'd like to introduce to do is component factories</p>
+        <p>Well before that, we'd like to introduct you to <strong>components</strong> - the central concept in IOC.</p>
 
+        <p>In the last example the wire spec actually had a component called 'hello', however this was just set to a string literal. That's not that useful, however we can also load AMD modules as components. In the below example we are loading the normalize.css file as a module.</p>
+
+        <pre><code class="javascript">
+    define({
+        // Normalise browser environment using normalize.css
+        reset: {
+            module: 'css!lib/normalize-css/normalize.css'
+        }
+    });
+        </code></pre>
+
+        <p>The css! plugin will also inject the stylesheet into the DOM. Pretty handy as you don't have to add css files to your html files directly any more.</p>
+
+        <p>So what about out html file? For this we need to introduce another central concept - <strong>factories</strong></p>
+
+        <p>Factories allow wire to instatiate objects and do things with them</p>
+
+        <pre><code class="javascript">
+    define({
+        // Normalise browser environment using normalize.css
+        reset: {
+            module: 'css!lib/normalize-css/normalize.css'
+        },
+
+        // Create basic layout
+        layout: {
+            render: {
+                template: {
+                    module: 'text!app/layout.html'
+                },
+                css: {
+                    module: 'css!app/layout.css'
+                }
+            },
+            insert: {
+                at: {
+                    $ref: 'dom.first!body'
+                }
+            }
+        },
+
+        plugins: ['wire/dom', 'wire/dom/render']
+
+    });
+        </code></pre>
 
     </body>
 </html>
