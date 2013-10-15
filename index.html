@@ -3,12 +3,15 @@
         <title>WireMail Tutorial</title>
         <link rel="stylesheet" href="style.css" />
         <script src="lib/jquery/jquery.js"></script>
+        <link rel="stylesheet" href="lib/highlightjs/styles/github.css">
+        <script src="lib/highlightjs/highlight.pack.js"></script>
         <script>
         $(function(){
-            $('pre.html').each(function(){
+            $('pre.html code').each(function(){
                 var html = $(this).html();
                 $(this).text(html);
             });
+            hljs.initHighlightingOnLoad();
         });
         </script>
     </head>
@@ -134,17 +137,20 @@
         <p>Your index.html looks quite small doesn't it? It now serves as a minimal shell to start up your app.</p>
 
         <pre class="html">
-<!--
-    <html>
-        <head>
-            <title>Seed App</title>
-            <script src="/lib/curl/src/curl.js"></script>
-            <script src="/app/run.js"></script>
-        </head>
-        <body>
-        </body>
-    </html>
--->
+        <code class="xml">
+        <!--
+            <!DOCTYPE html>
+            <html>
+                <head>
+                    <title>Seed App</title>
+                    <script src="/lib/curl/src/curl.js"></script>
+                    <script src="/app/run.js"></script>
+                </head>
+                <body>
+                </body>
+            </html>
+        -->
+        </code>
         </pre>
 
         <h3>run.js - configure your packages and start the app</h3>
