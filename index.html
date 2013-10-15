@@ -7,8 +7,11 @@
         <script src="lib/highlightjs/highlight.pack.js"></script>
         <script>
         $(function(){
-            $('pre.html code').each(function(){
+            $('pre code.html').each(function(){
                 var html = $(this).html();
+                html = html.replace(/.*<!--.*[\n\r]/,'');
+                html = html.replace(/\n.*-->.*/,'');
+                console.log(html);
                 $(this).text(html);
             });
             hljs.initHighlightingOnLoad();
@@ -136,8 +139,7 @@
 
         <p>Your index.html looks quite small doesn't it? It now serves as a minimal shell to start up your app.</p>
 
-        <pre class="html">
-        <code class="xml">
+        <pre><code class="xml">
         <!--
             <!DOCTYPE html>
             <html>
@@ -150,14 +152,38 @@
                 </body>
             </html>
         -->
-        </code>
-        </pre>
+        </code></pre>
 
         <h3>run.js - configure your packages and start the app</h3>
 
         <p>Here we define any AMD packages we are going to use, and start up our wire spec!</p>
 
-        <pre class="javascript">
+        <pre><code class="javascript">
+    (function(curl){
+
+        // Configure all our module paths
+        var config = {
+            paths: {
+                'jquery': 'lib/jquery/jquery'
+            },
+            packages: [
+                { name: 'curl', location: 'lib/curl/src/curl' },
+                { name: 'wire', location: 'lib/wire', main: 'wire' },
+                { name: 'meld', location: 'lib/meld', main: 'meld' },
+                { name: 'when', location: 'lib/when', main: 'when' },
+                { name: 'poly', location: 'lib/poly' }
+            ]
+        };
+
+        // Start up the app! Runs our app/spec.js through wire.
+        curl(config, ['wire!app/spec']);
+
+    })(curl);
+        </code></pre>
+
+        <p>Almost done, however the wire! plugin returns a promise, so let's add the success and failure handlers so we can look inside and handle any errors that arise</p>
+
+        <pre><code class="javascript">
     (function(curl){
 
         // Configure all our module paths
@@ -191,19 +217,19 @@
         curl(config, ['wire!app/spec']).then(success, fail);
 
     })(curl);
-        </pre>
+        </code></pre>
 
         <h3>spec.js - our wire environment</h3>
 
         <p>Finally - this is where the magic happens - the wire spec!</p>
 
-        <pre class="javascript">
+        <pre><code class="javascript">
     define({
 
         hello: 'world'
 
     });
-        </pre>
+        </code></pre>
 
         <p>If you looked closely at the run.js you'll see that window.context has been set. If you type 'context.hello' in the console you should now get 'world'. We'll come onto what this means later</p>
 
