@@ -11,13 +11,14 @@ config =
         { name: 'lodash', location: 'lib/lodash/dist', main: 'lodash.compat'}
         { name: 'backbone', location: 'lib/backbone', main: 'backbone', config: cjsLoader }
         { name: 'knockout', location: 'lib/knockout/build/output', main: 'knockout-latest' }
+        { name: 'knockout.punches', location: 'lib/knockout.punches/build/output', main: 'knockout.punches.min' }
         { name: 'knockback', location: 'lib/knockback', main: 'knockback', config: cjsLoader}
         { name: 'wire', location: 'lib/wire', main: 'wire' }
         { name: 'meld', location: 'lib/meld', main: 'meld' }
         { name: 'when', location: 'lib/when', main: 'when' }
         { name: 'poly', location: 'lib/poly' }
     ]
-    preloads: ['app/utils/jquery-setup']
+    preloads: ['app/utils/knockout-setup']
 
 success = (context) ->
     window.context = context
