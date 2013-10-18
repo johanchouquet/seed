@@ -48,6 +48,7 @@ module.exports = (grunt) ->
                             { name: 'lodash', location: 'lib/lodash/dist', main: 'lodash'}
                             { name: 'backbone', location: 'lib/backbone', main: 'backbone', config: cjsLoader}
                             { name: 'knockout', location: 'lib/knockout/build/output', main: 'knockout-latest' }
+                            { name: 'knockout.punches', location: 'lib/knockout.punches/build/output', main: 'knockout.punches.min' }
                             { name: 'knockback', location: 'lib/knockback', main: 'knockback', config: cjsLoader}
                         ]
                 helpers : ['spec/javascripts/helpers/*.js']
